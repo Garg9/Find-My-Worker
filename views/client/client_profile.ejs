@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Client Profile - Find My Worker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="/styles.css" rel="stylesheet" type="text/css" />
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background-color: #f4f4f4; }
+        .nav-bar { background-color: #333; padding: 10px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .nav-container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 0 20px; 
+        }
+        .logotext { color: white; text-decoration: none; font-size: 24px; font-weight: bold; }
+        .nav-content { display: flex; align-items: center; gap: 20px; }
+        .nav-menu { display: flex; align-items: center; gap: 25px; }
+        .nav-link { color: white; text-decoration: none; font-size: 16px; padding: 8px 12px; transition: color 0.3s; }
+        .nav-link:hover { color: #007bff; }
+        .cta-button1 { background-color: #007bff; padding: 8px 15px; border-radius: 5px; color: white; text-decoration: none; transition: background-color 0.3s; }
+        .cta-button1:hover { background-color: #0056b3; }
+        .section { padding: 50px 0; }
+        .container { max-width: 1200px; margin: 0 auto; text-align: center; }
+        h1 { font-size: 36px; color: #333; }
+        .profile-area-right { margin-left: 20px; text-align: left; }
+        .flex { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; }
+        .form-label { display: block; margin: 10px 0 5px; color: #333; }
+        .text-field { width: 100%; max-width: 300px; padding: 8px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; }
+        .button { padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        .button:hover { background-color: #0056b3; }
+        .message { color: green; margin: 10px 0; }
+        .error { color: red; margin: 10px 0; }
+        @media (max-width: 768px) { 
+            .nav-container { flex-direction: column; padding: 10px; }
+            .nav-content { margin-top: 10px; flex-direction: column; gap: 15px; }
+            .nav-menu { flex-direction: column; gap: 10px; }
+            .flex { flex-direction: column; }
+            .profile-area-right { margin-left: 0; margin-top: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="nav-container">
+            <div class="logo-div">
+                <a href="/api/client/home" class="logotext"><b>Find My Worker</b></a>
+            </div>
+            <nav class="nav-content">
+                <div class="nav-menu">
+                    <a href="/api/client/home" class="nav-link">Home</a>
+                    <a href="/api/client/myrequests" class="nav-link">My Requests</a>
+                    <a href="/api/client/profile" class="nav-link" style="color:#710101;"><b>My Profile</b></a>
+                </div>
+                <div class="nav-cta-button-container">
+                    <a href="/api/client/logout" class="nav-link cta-button">Log Out</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="container">
+            <h1>Your Profile</h1>
+            <% if (error) { %>
+                <p class="error"><%= error %></p>
+            <% } %>
+            <% if (success) { %>
+                <p class="message"><%= success %></p>
+            <% } %>
+            <% if (client) { %>
+                <div class="flex">
+                    <img src="/assets/profile.png" alt="Profile" style="max-width: 31%;" />
+                    <div class="profile-area-right flex">
+                        <p><b>Email</b>: <%= client.email %></p>
+                        <p><b>Name</b>: <%= client.name || 'Not set' %></p>
+                        <p><b>Mobile No</b>: <%= client.phone || 'Not set' %></p>
+                        <p><b>Address</b>: <%= client.address || 'Not set' %></p>
+                    </div>
+                </div>
+                <form action="/api/client/update" method="POST">
+                    <label class="form-label">Email:</label>
+                    <input type="email" class="text-field" name="email" value="<%= client.email %>" required />
+                    <label class="form-label">Name:</label>
+                    <input type="text" class="text-field" name="name" value="<%= client.name || '' %>" />
+                    <label class="form-label">Mobile No:</label>
+                    <input type="text" class="text-field" name="phone" value="<%= client.phone || '' %>" />
+                    <label class="form-label">Address:</label>
+                    <input type="text" class="text-field" name="address" value="<%= client.address || '' %>" />
+                    <label class="form-label">New Password (optional):</label>
+                    <input type="password" class="text-field" name="password" placeholder="Enter new password" />
+                    <button type="submit" class="button">Update Profile</button>
+                </form>
+            <% } else { %>
+                <p>Profile data not available.</p>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>

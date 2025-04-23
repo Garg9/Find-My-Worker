@@ -1,0 +1,136 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Worker Details</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .nav-bar {
+            background-color: #333;
+            padding: 10px 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logotext {
+            color: white;
+            text-decoration: none;
+            font-size: 24px;
+        }
+
+        .nav-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+
+        .nav-link:hover {
+            text-decoration: underline;
+        }
+
+        .cta-button {
+            background-color: #007bff;
+            padding: 8px 15px;
+            border-radius: 5px;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #0056b3;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .worker-details p {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: underline;
+            font-size: 16px;
+        }
+
+        .back-button:hover {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="nav-container">
+            <div class="logo-div">
+                <a href="/api/admin/dashboard" class="logotext"><b>Find My Worker</b></a>
+            </div>
+            <nav class="nav-content">
+                <div class="nav-menu">
+                    <a href="/api/admin/dashboard" class="nav-link">Dashboard</a>
+                    <a href="/api/admin/workers" class="nav-link"><b>Workers</b></a>
+                    <a href="/api/admin/clients" class="nav-link">Clients</a>
+                    <a href="/api/admin/pairing" class="nav-link">Tasks</a>
+                </div>
+                <div class="nav-cta-button-container">
+                    <a href="/api/admin/logout" class="cta-button">Logout</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Worker Details</h1>
+        <div class="worker-details">
+            <p><strong>Name:</strong> <%= worker.name %></p>
+            <p><strong>Email:</strong> <%= worker.email %></p>
+            <p><strong>Phone:</strong> <%= worker.phone %></p>
+            <p><strong>Address:</strong> <%= worker.address %></p>
+            <p><strong>Job Category:</strong> <%= worker.jobCategory %></p>
+            <p><strong>Highest Qualification:</strong> <%= worker.highestQualification %></p>
+            <p><strong>Verified:</strong> <%= worker.isVerify ? 'Yes' : 'No' %></p>
+            <a href="javascript:history.back()" class="back-button">← Back</a>
+            <form action="/api/admin/worker/<%= worker._id %>/delete" method="POST" onsubmit="return confirm('Are you sure you want to remove this worker?');">
+                <button type="submit" class="cta-button danger" style="margin-top: 20px; background-color: #dc3545;">Remove Worker</button>
+            </form>            
+        </div>
+    </div>
+</body>
+</html>

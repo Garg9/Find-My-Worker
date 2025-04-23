@@ -1,0 +1,266 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <style>
+        /* Fallback styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .nav-bar {
+            background-color: #333;
+            padding: 10px 0;
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logotext {
+            color: white;
+            text-decoration: none;
+            font-size: 24px;
+        }
+        .nav-content {
+            display: flex;
+            align-items: center;
+        }
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        .cta-button {
+            background-color: #007bff;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+        .section {
+            padding: 50px 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .w-layout-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .dashboard-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 36px;
+            color: #333;
+            text-align: center;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 15px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="nav-container">
+            <div class="logo-div">
+                <a href="/" class="logotext"><b>Find My Worker</b></a>
+            </div>
+            <nav class="nav-content">
+                <div class="nav-menu">
+                    <a href="/api/admin/dashboard" class="nav-link">Dashboard</a>
+                    <a href="/api/admin/workers" class="nav-link">Workers</a>
+                    <a href="/api/admin/clients" class="nav-link">Clients</a>
+                </div>
+                <div class="nav-cta-button-container">
+                    <a href="/api/admin/logout" class="nav-link cta-button">Logout</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="page-wrapper">
+        <div class="section light-color-gradient">
+            <div class="container">
+                <h1 class="heading h1">Admin Dashboard</h1>
+                <div class="w-layout-grid">
+                    <div class="dashboard-box">
+                        <h2>Workers</h2>
+                        <p><%= workersCount %></p>
+                        <a href="/api/admin/workers" class="button">View Workers</a>
+                    </div>
+                    <div class="dashboard-box">
+                        <h2>Clients</h2>
+                        <p><%= clientsCount %></p>
+                        <a href="/api/admin/clients" class="button">View Clients</a>
+                    </div>
+                    <div class="dashboard-box">
+                        <h2>Tasks</h2>
+                        <p><%= tasksCount %></p>
+                        <a href="/api/admin/pairing" class="button">View Tasks</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+ -->
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .nav-bar {
+            background-color: #333;
+            padding: 10px 0;
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logotext {
+            color: white;
+            text-decoration: none;
+            font-size: 24px;
+        }
+        .nav-content {
+            display: flex;
+            align-items: center;
+        }
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        .cta-button {
+            background-color: #007bff;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+        .section {
+            padding: 50px 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .w-layout-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .dashboard-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 36px;
+            color: #333;
+            text-align: center;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 15px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="nav-container">
+            <div class="logo-div">
+                <a href="/" class="logotext"><b>Find My Worker</b></a>
+            </div>
+            <nav class="nav-content">
+                <div class="nav-menu">
+                    <a href="/api/admin/dashboard" class="nav-link">Dashboard</a>
+                    <a href="/api/admin/workers" class="nav-link">Workers</a>
+                    <a href="/api/admin/clients" class="nav-link">Clients</a>
+                    <a href="/api/admin/pairing" class="nav-link">Tasks</a> <!-- Tasks button added -->
+                </div>
+                <div class="nav-cta-button-container">
+                    <a href="/api/admin/logout" class="nav-link cta-button">Logout</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="page-wrapper">
+        <div class="section light-color-gradient">
+            <div class="container">
+                <h1 class="heading h1">Admin Dashboard</h1>
+                <div class="w-layout-grid">
+                    <div class="dashboard-box">
+                        <h2>Workers</h2>
+                        <p><%= workersCount %></p>
+                        <a href="/api/admin/workers" class="button">View Workers</a>
+                    </div>
+                    <div class="dashboard-box">
+                        <h2>Clients</h2>
+                        <p><%= clientsCount %></p>
+                        <a href="/api/admin/clients" class="button">View Clients</a>
+                    </div>
+                    <div class="dashboard-box">
+                        <h2>Tasks</h2>
+                        <p><%= tasksCount %></p>
+                        <a href="/api/admin/pairing" class="button">View Tasks</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

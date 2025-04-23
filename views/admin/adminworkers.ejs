@@ -1,0 +1,420 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Workers</title>
+    <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="nav-container">
+            <div class="logo-div">
+                <a href="/api/admin/dashboard" class="logotext"><b>Find My Worker</b></a>
+            </div>
+            <nav class="nav-content">
+                <div class="nav-menu">
+                    <a href="/api/admin/dashboard" class="nav-link">Dashboard</a>
+                    <a href="/api/admin/workers" class="nav-link" style="color:#710101;"><b>Workers</b></a>
+                    <a href="/api/admin/clients" class="nav-link">Clients</a>
+                </div>
+                <div class="nav-cta-button-container">
+                    <a href="/api/admin/logout" class="nav-link cta-button1">Log Out</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Verified</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% workers.forEach(worker => { %>
+                    <tr>
+                        <td><%= worker.name %></td>
+                        <td><%= worker.email %></td>
+                        <td><%= worker.phone %></td>
+                        <td><%= worker.isVerify ? 'Yes' : 'No' %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html> -->
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Workers</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .nav-bar {
+            background-color: #333;
+            padding: 10px 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logotext {
+            color: white;
+            text-decoration: none;
+            font-size: 24px;
+        }
+
+        .nav-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+
+        .nav-link:hover {
+            text-decoration: underline;
+        }
+
+        .cta-button {
+            background-color: #007bff;
+            padding: 8px 15px;
+            border-radius: 5px;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #0056b3;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .styled-table th, .styled-table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .styled-table th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .styled-table tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="nav-container">
+            <div class="logo-div">
+                <a href="/api/admin/dashboard" class="logotext"><b>Find My Worker</b></a>
+            </div>
+            <nav class="nav-content">
+                <div class="nav-menu">
+                    <a href="/api/admin/dashboard" class="nav-link">Dashboard</a>
+                    <a href="/api/admin/workers" class="nav-link" style="color:#ffd700;"><b>Workers</b></a>
+                    <a href="/api/admin/clients" class="nav-link">Clients</a>
+                </div>
+                <div class="nav-cta-button-container">
+                    <a href="/api/admin/logout" class="cta-button">Logout</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Verified</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% workers.forEach(worker => { %>
+                    <tr>
+                        <td><%= worker.name %></td>
+                        <td><%= worker.email %></td>
+                        <td><%= worker.phone %></td>
+                        <td><%= worker.isVerify ? 'Yes' : 'No' %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Workers</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .nav-bar {
+            background-color: #333;
+            padding: 10px 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logotext {
+            color: white;
+            text-decoration: none;
+            font-size: 24px;
+        }
+
+        .nav-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+
+        .nav-link:hover {
+            text-decoration: underline;
+        }
+
+        .cta-button {
+            background-color: #007bff;
+            padding: 8px 15px;
+            border-radius: 5px;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #0056b3;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .styled-table th, .styled-table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .styled-table th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .styled-table tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="nav-container">
+            <div class="logo-div">
+                <a href="/api/admin/dashboard" class="logotext"><b>Find My Worker</b></a>
+            </div>
+            <nav class="nav-content">
+                <div class="nav-menu">
+                    <a href="/api/admin/dashboard" class="nav-link">Dashboard</a>
+                    <a href="/api/admin/workers" class="nav-link"><b>Workers</b></a>
+                    <a href="/api/admin/clients" class="nav-link">Clients</a>
+                    <a href="/api/admin/pairing" class="nav-link">Tasks</a>
+                </div>
+                <div class="nav-cta-button-container">
+                    <a href="/api/admin/logout" class="cta-button">Logout</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Listed Workers</h1>
+        <form method="GET" action="/api/admin/workers">
+            <input type="text" name="search" placeholder="Search by name , mobile number or category" style="width: 400px; padding: 8px;" />
+            <button type="submit">Search</button>
+        </form>    
+
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Verified</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% workers.forEach(worker => { %>
+                    <tr>
+                        <td>
+                            <a href="/api/admin/worker/<%= worker._id %>" style="color: #007bff; text-decoration: underline;">
+                                <%= worker.name %>
+                            </a>
+                        </td>
+                        <td><%= worker.email %></td>
+                        <td><%= worker.phone %></td>
+                        <td>
+                            <form action="/api/admin/worker/<%= worker._id %>/verify" method="POST">
+                              <!-- <select name="isVerify" onchange="this.form.submit()">
+                                <option value="true" <%= worker.isVerify ? 'selected' : '' %>>Yes</option>
+                                <option value="false" <%= !worker.isVerify ? 'selected' : '' %>>No</option>
+                              </select> -->
+                              <!-- <select name="isVerify" onchange="updateVerify(this, '<%= worker._id %>')" class="verify-select">
+                                <option value="true" <%= worker.isVerify ? 'selected' : '' %>>Yes</option>
+                                <option value="false" <%= !worker.isVerify ? 'selected' : '' %>>No</option>
+                              </select> -->
+                              <select onchange="updateVerify(this, '<%= worker._id %>')">
+                                <option value="true" <%= worker.isVerify ? 'selected' : '' %>>Yes</option>
+                                <option value="false" <%= !worker.isVerify ? 'selected' : '' %>>No</option>
+                              </select>
+                              
+                            </form>
+                            <!-- <script>
+                                async function updateVerify(selectElement, workerId) {
+                                  const value = selectElement.value;
+                              
+                                  try {
+                                    const res = await fetch(`/api/admin/worker/${workerId}/verify`, {
+                                      method: 'POST',
+                                      headers: {
+                                        'Content-Type': 'application/json'
+                                      },
+                                      credentials: 'include', // 🔥 THIS sends the cookie!
+                                      body: JSON.stringify({ isVerify: value })
+                                    });
+                              
+                                    if (res.redirected) {
+                                      window.location.href = res.url;
+                                    } else if (res.ok) {
+                                      location.reload(); // optional: refresh to reflect changes
+                                    } else {
+                                      alert('Failed to update verification.');
+                                    }
+                                  } catch (err) {
+                                    console.error('Error updating verification:', err);
+                                  }
+                                }
+                              </script> -->
+                              <script>
+                                async function updateVerify(selectElement, workerId) {
+                                  const value = selectElement.value;
+                              
+                                  try {
+                                    const res = await fetch(`/api/admin/worker/${workerId}/verify`, {
+                                      method: 'POST',
+                                      headers: {
+                                        'Content-Type': 'application/json'
+                                      },
+                                      credentials: 'include', // 👈 Important! Ensures JWT cookie is sent.
+                                      body: JSON.stringify({ isVerify: value })
+                                    });
+                              
+                                    if (res.redirected) {
+                                      window.location.href = res.url;
+                                    } else if (res.ok) {
+                                      window.location.reload(); // optional reload
+                                    } else {
+                                      const err = await res.text();
+                                      alert('Failed to update: ' + err);
+                                    }
+                                  } catch (err) {
+                                    console.error('Update error:', err);
+                                  }
+                                }
+                              </script>
+                              
+                          </td>                          
+                    </tr>
+                <% }) %>
+            </tbody>
+                        
+        </table>
+    </div>
+</body>
+</html>

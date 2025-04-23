@@ -1,0 +1,277 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Post New Task - Find My Worker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="/styles.css" rel="stylesheet" type="text/css" />
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background-color: #f4f4f4; }
+        .nav-bar { background-color: #333; padding: 10px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .logotext { color: white; text-decoration: none; font-size: 24px; font-weight: bold; }
+        .nav-content { display: flex; align-items: center; gap: 20px; }
+        .nav-menu { display: flex; align-items: center; gap: 25px; }
+        .nav-link { color: white; text-decoration: none; font-size: 16px; padding: 8px 12px; transition: color 0.3s; }
+        .nav-link:hover { color: #007bff; }
+        .cta-button1 { background-color: #007bff; padding: 8px 15px; border-radius: 5px; color: white; text-decoration: none; transition: background-color 0.3s; }
+        .cta-button1:hover { background-color: #0056b3; }
+        .section { padding: 50px 0; }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 { text-align: center; margin-bottom: 30px; color: #333; }
+        label { font-weight: bold; display: block; margin-top: 15px; color: #333; }
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            resize: vertical;
+        }
+        button {
+            margin-top: 25px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            .nav-container { flex-direction: column; padding: 10px; }
+            .nav-content { margin-top: 10px; flex-direction: column; gap: 15px; }
+            .nav-menu { flex-direction: column; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+   
+    <div class="nav-bar">
+        <div class="nav-container">
+            <div class="logo-div">
+                <a href="/api/client/home" class="logotext"><b>Find My Worker</b></a>
+            </div>
+            <nav class="nav-content">
+                <div class="nav-menu">
+                    <a href="/api/client/home" class="nav-link">Home</a>
+                    <a href="/api/client/myrequests" class="nav-link">My Requests</a>
+                    <a href="/api/client/notification" class="nav-link">Notifications</a>
+                    <a href="/api/client/profile" class="nav-link">My Profile</a>
+                </div>
+                <div class="nav-cta-button-container">
+                    <a href="/api/client/logout" class="nav-link cta-button1">Log Out</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    
+    <div class="section">
+        <div class="container">
+            <h1>Post a New Task</h1>
+            <form action="/api/client/post-task" method="POST">
+                <label for="title">Task Title</label>
+                <input type="text" id="title" name="title" required>
+
+                <label for="description">Description</label>
+                <textarea id="description" name="description" rows="5" required></textarea>
+
+                <label for="category">Category</label>
+                <input type="text" id="category" name="category" required>
+
+                <button type="submit">Submit Task</button>
+            </form>
+
+            <a href="/api/client/myrequests" class="back-link">← Back to My Requests</a>
+        </div>
+    </div>
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Post New Task - Find My Worker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/styles.css" rel="stylesheet" type="text/css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+        .nav-bar {
+            background-color: #333;
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .logotext {
+            color: white;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-top: 15px;
+            font-weight: bold;
+            color: #555;
+        }
+        input, textarea, select {
+            margin-top: 5px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            margin-top: 25px;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .back-link a {
+            text-decoration: none;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="nav-container">
+            <a href="/api/client/home" class="logotext">Find My Worker</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Post a New Task</h2>
+        <form action="/api/client/post-task" method="POST">
+            <label for="title">Task Title</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="description">Task Description</label>
+            <textarea id="description" name="description" rows="4" required></textarea>
+
+            <label for="category">Category</label>
+            <select id="category" name="category" required>
+                <option value="">-- Select Category --</option>
+                <option value="Plumbing">Plumbing</option>
+                <option value="Electrical">Electrical</option>
+                <option value="Carpentry">Carpentry</option>
+                <option value="Painting">Painting</option>
+                <option value="Cleaning">Cleaning</option>
+                <option value="Other">Other</option>
+            </select>
+            <!-- <select id="category" name="category" required onchange="fetchServices(this.value)">
+                <option value="">-- Select Category --</option>
+                <% categories.forEach(cat => { %>
+                    <option value="<%= cat._id %>"><%= cat.name %></option>
+                <% }); %>
+            </select>
+            
+            <select id="service" name="service" required>
+                <option value="">-- Select Service --</option>
+            </select>
+            
+            <p id="estimatedPrice"></p>
+            
+            <script>
+            async function fetchServices(categoryId) {
+                const res = await fetch(`/api/client/category/${categoryId}/services`);
+                const data = await res.json();
+            
+                const serviceSelect = document.getElementById('service');
+                const priceDisplay = document.getElementById('estimatedPrice');
+                serviceSelect.innerHTML = '<option value="">-- Select Service --</option>';
+                priceDisplay.textContent = '';
+            
+                data.forEach(service => {
+                    const option = document.createElement('option');
+                    option.value = JSON.stringify(service);
+                    option.text = `${service.name} - ₹${service.price}`;
+                    serviceSelect.add(option);
+                });
+            
+                serviceSelect.onchange = () => {
+                    const selectedService = JSON.parse(serviceSelect.value);
+                    priceDisplay.textContent = `Estimated Price: ₹${selectedService.price}`;
+                };
+            }
+            </script>             -->
+            <button type="submit">Post Task</button>
+        </form>
+
+        <div class="back-link">
+            <a href="/api/client/home">← Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>
+

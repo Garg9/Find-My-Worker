@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Find My Worker - Home</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            background-color: #f4f4f4; 
+            line-height: 1.6; 
+        }
+        .nav-bar { 
+            background-color: #333; 
+            padding: 15px 0; 
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+        }
+        .nav-container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 0 20px; 
+        }
+        .logotext { 
+            color: white; 
+            text-decoration: none; 
+            font-size: 28px; 
+            font-weight: bold; 
+            transition: color 0.3s; 
+        }
+        .logotext:hover { 
+            color: #007bff; 
+        }
+        .nav-content { 
+            display: flex; 
+            align-items: center; 
+            gap: 30px; 
+        }
+        .nav-menu { 
+            display: flex; 
+            align-items: center; 
+            gap: 25px; 
+        }
+        .nav-link { 
+            color: white; 
+            text-decoration: none; 
+            font-size: 16px; 
+            transition: color 0.3s; 
+        }
+        .nav-link:hover { 
+            color: #007bff; 
+        }
+        .nav-cta-button-container { 
+            display: flex; 
+            gap: 15px; 
+        }
+        .cta-button { 
+            background-color: #007bff; 
+            padding: 12px 24px; 
+            border-radius: 6px; 
+            color: white; 
+            text-decoration: none; 
+            font-size: 16px; 
+            font-weight: 600; 
+            transition: background-color 0.3s, transform 0.2s; 
+            border: 2px solid #007bff; 
+        }
+        .cta-button:hover { 
+            background-color: #0056b3; 
+            transform: translateY(-2px); 
+            border-color: #0056b3; 
+        }
+        .hero-section { 
+            padding: 80px 0; 
+            text-align: center; 
+            background: linear-gradient(to bottom, #e6f0fa, #f4f4f4); 
+        }
+        .about-section { 
+            padding: 60px 0; 
+            text-align: center; 
+            background-color: #fff; 
+        }
+        .contact-section { 
+            padding: 60px 0; 
+            text-align: center; 
+            background-color: #f4f4f4; 
+        }
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 0 20px; 
+        }
+        h1 { 
+            font-size: 48px; 
+            color: #333; 
+            margin-bottom: 20px; 
+        }
+        .hero-text { 
+            font-size: 20px; 
+            color: #666; 
+            margin-bottom: 40px; 
+        }
+        h2 { 
+            font-size: 36px; 
+            color: #333; 
+            margin-bottom: 30px; 
+        }
+        .about-text, .contact-text { 
+            font-size: 18px; 
+            color: #666; 
+            max-width: 800px; 
+            margin: 0 auto 20px; 
+            line-height: 1.8; 
+        }
+        .about-text strong, .contact-text strong { 
+            color: #007bff; 
+        }
+        .contact-text a { 
+            color: #007bff; 
+            text-decoration: none; 
+        }
+        .contact-text a:hover { 
+            text-decoration: underline; 
+        }
+        .role-links { 
+            display: flex; 
+            justify-content: center; 
+            gap: 30px; 
+            flex-wrap: wrap; 
+        }
+        .role-card { 
+            background-color: white; 
+            padding: 30px; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+            width: 250px; 
+            text-align: center; 
+            transition: transform 0.3s; 
+        }
+        .role-card:hover { 
+            transform: translateY(-5px); 
+        }
+        .role-title { 
+            font-size: 24px; 
+            color: #333; 
+            margin-bottom: 15px; 
+        }
+        .role-button { 
+            display: inline-block; 
+            padding: 12px 25px; 
+            background-color: #007bff; 
+            color: white; 
+            text-decoration: none; 
+            border-radius: 5px; 
+            font-weight: bold; 
+            transition: background-color 0.3s; 
+        }
+        .role-button:hover { 
+            background-color: #0056b3; 
+        }
+        @media (max-width: 768px) { 
+            .nav-container { 
+                flex-direction: column; 
+                padding: 10px; 
+            }
+            .nav-content { 
+                margin-top: 15px; 
+                flex-wrap: wrap; 
+                justify-content: center; 
+                gap: 15px; 
+            }
+            .nav-menu { 
+                flex-direction: column; 
+                gap: 10px; 
+            }
+            .nav-cta-button-container { 
+                flex-direction: column; 
+                gap: 10px; 
+                width: 100%; 
+                max-width: 200px; 
+            }
+            .cta-button { 
+                width: 100%; 
+                text-align: center; 
+            }
+            .role-links { 
+                gap: 20px; 
+            }
+            .role-card { 
+                width: 100%; 
+                max-width: 300px; 
+            }
+        }
+    </style>
+</head>
+<body id="index-page">
+    <div class="nav-bar">
+        <div class="nav-container">
+            <div class="logo-div">
+                <a href="/" class="logotext">Find My Worker</a>
+            </div>
+            <nav class="nav-content">
+                <div class="nav-menu">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="#about" class="nav-link">About Us</a>
+                    <a href="#contact" class="nav-link">Contact Us</a>
+                </div>
+                <div class="nav-cta-button-container">
+                    <a href="/api/admin/login" class="cta-button">Admin Login</a>
+                    <a href="/api/client/login" class="cta-button">Client Login</a>
+                    <a href="/api/worker/login" class="cta-button">Worker Login</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="hero-section">
+        <div class="container">
+            <h1>Welcome to Find My Worker</h1>
+            <p class="hero-text">Connect with workers, manage tasks, or oversee operations – choose your role to get started.</p>
+            <div class="role-links">
+                <div class="role-card">
+                    <h2 class="role-title">Admin</h2>
+                    <a href="/api/admin/login" class="role-button">Login as Admin</a>
+                </div>
+                <div class="role-card">
+                    <h2 class="role-title">Client</h2>
+                    <a href="/api/client/login" class="role-button">Login as Client</a>
+                </div>
+                <div class="role-card">
+                    <h2 class="role-title">Worker</h2>
+                    <a href="/api/worker/login" class="role-button">Login as Worker</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="about-section" id="about">
+        <div class="container">
+            <h2>About Us</h2>
+            <p class="about-text">Find My Worker is a platform built to empower blue-collar workers by connecting them with job opportunities in their local area. Whether you're a plumber, electrician, carpenter, painter, mechanic, or construction worker, we make it easy for you to find work and for customers to hire skilled professionals.</p>
+            <p class="about-text">We understand the challenges faced by hardworking individuals in finding consistent work. Our goal is to create a trusted, technology-driven space where workers can showcase their skills and get hired effortlessly while ensuring customers receive reliable services.</p>
+            <p class="about-text"><strong>What We Offer:</strong></p>
+            <p class="about-text">✅ <strong>Job Opportunities Made Easy</strong> – No middlemen, just direct connections between workers and customers.<br>
+            ✅ <strong>Verified & Skilled Workforce</strong> – Customers can find trusted, skilled professionals for their needs.<br>
+            ✅ <strong>Fair & Transparent System</strong> – Ensuring workers get paid fairly for their skills.<br>
+            ✅ <strong>Empowering Blue-Collar Workers</strong> – Giving workers the visibility and recognition they deserve.</p>
+            <p class="about-text">At Find My Worker, we believe that every skilled worker deserves a stable livelihood and every job should have the right hands to get it done.</p>
+            <p class="about-text">Join us in building a stronger, more connected workforce! 🚀</p>
+        </div>
+    </div>
+
+    <div class="contact-section" id="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <p class="contact-text">We’d love to hear from you! Whether you’re a worker looking for job opportunities or a customer needing skilled labor, our team is here to help.</p>
+            <p class="contact-text">📍 <strong>Office Address</strong><br>Gurugram</p>
+            <p class="contact-text">📞 <strong>Phone</strong><br>9999999999</p>
+            <p class="contact-text">✉ <strong>Email</strong><br><a href="mailto:support@findmyworker.com">support@findmyworker.com</a></p>
+            <p class="contact-text">For any queries, support, or business partnerships, feel free to reach out—we’re here to assist you!</p>
+        </div>
+    </div>
+</body>
+</html>

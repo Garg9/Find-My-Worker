@@ -1,0 +1,188 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Task Details - Worker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="/styles.css" rel="stylesheet" type="text/css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .nav-bar {
+            background-color: #333;
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logotext {
+            color: white;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 8px 12px;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #007bff;
+        }
+
+        .cta-button {
+            background-color: #007bff;
+            padding: 8px 15px;
+            border-radius: 5px;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #0056b3;
+        }
+
+        .page-wrapper {
+            flex: 1;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .task-details-box {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .heading.h1 {
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 28px;
+        }
+
+        .task-details-box p {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                padding: 10px;
+            }
+
+            .nav-content {
+                margin-top: 10px;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .cta-button {
+                width: 100%;
+                text-align: center;
+            }
+
+            .task-details-box {
+                padding: 20px;
+                max-width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="nav-container">
+            <div class="logo-div">
+                <a href="/api/worker/home" class="logotext">Find My Worker</a>
+            </div>
+            <nav class="nav-content">
+                <div class="nav-menu">
+                    <a href="/api/worker/home" class="nav-link"><b>Home</b></a>
+                    <a href="/api/worker/profile" class="nav-link">My Profile</a>
+                </div>
+                <div class="nav-cta-button-container">
+                    <a href="/api/worker/logout" class="cta-button">Log Out</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="page-wrapper">
+        <div class="task-details-box">
+            <h1 class="heading h1"><%= task.title %></h1>
+            <p><b>Description:</b> <%= task.description %></p>
+            <p><b>Category:</b> <%= task.category %></p>
+            <p><b>Client Name:</b> <%= task.clientID.name %></p>
+            <p><b>Client Phone:</b> <%= task.clientID.phone %></p>
+            <p><b>Client Address:</b> <%= task.clientID.address %></p> 
+
+            <a href="javascript:history.back()" class="back-button">← Back</a>
+            <!-- <form action="/api/worker/task/<%= task._id %>/apply" method="POST" style="margin-top: 20px;">
+                <button type="submit" class="cta-button">Apply for Task</button>
+            </form>             -->
+            <!-- <% if (alreadyApplied) { %>
+                <button class="cta-button" style="background-color: gray; cursor: not-allowed;" disabled>Already Applied</button>
+            <% } else { %>
+                <form action="/api/worker/task/<%= task._id %>/apply" method="POST" style="margin-top: 20px;">
+                    <button type="submit" class="cta-button">Apply for Task</button>
+                </form>
+            <% } %>-->
+            
+            <% if (alreadyApplied) { %>
+                <button class="cta-button" style="background-color: gray; cursor: not-allowed;" disabled>Already Applied</button>
+            <% } else { %>
+                <form action="/api/worker/task/<%= task._id %>/apply" method="POST" style="margin-top: 20px;">
+                    <button type="submit" class="cta-button">Apply for Task</button>
+                </form>
+            <% } %>
+                       
+        </div>
+    </div>
+</body>
+</html>

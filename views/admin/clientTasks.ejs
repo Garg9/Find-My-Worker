@@ -1,0 +1,92 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tasks by <%= client.name %></title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Tasks posted by <%= client.name %></h1>
+    <a href="/api/admin/clients" class="back-btn">← Back to Clients</a>
+
+    <% if (tasks.length > 0) { %>
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Status</th>
+            <th>Created At</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% tasks.forEach(task => { %>
+            <tr>
+              <td><%= task.title %></td>
+              <td><%= task.description %></td>
+              <td><%= task.category %></td>
+              <td><%= task.status %></td>
+              <td><%= new Date(task.createdAt).toLocaleDateString() %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <p>This client has not posted any tasks yet.</p>
+    <% } %>
+  </div>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tasks by <%= client.name %></title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Tasks posted by <%= client.name %></h1>
+    <a href="/api/admin/clients" class="back-btn">← Back to Clients</a>
+
+    <% if (tasks.length > 0) { %>
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Status</th>
+            <th>Created At</th>
+            <th>Actions</th> <!-- New column for actions -->
+          </tr>
+        </thead>
+        <tbody>
+          <% tasks.forEach(task => { %>
+            <tr>
+              <td><%= task.title %></td>
+              <td><%= task.description %></td>
+              <td><%= task.category %></td>
+              <td><%= task.status %></td>
+              <td><%= new Date(task.createdAt).toLocaleDateString() %></td>
+              <td>
+                <!-- Remove button -->
+                <form action="/api/admin/delete-task/<%= task._id %>" method="POST" style="display:inline;">
+                  <button type="submit" class="remove-btn">Remove</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <p>This client has not posted any tasks yet.</p>
+    <% } %>
+  </div>
+</body>
+</html>

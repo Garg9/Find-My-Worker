@@ -1,0 +1,441 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Client Registration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="/styles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="nav-container">
+            <div class="logo-div">
+                <a href="/" class="logotext"><b>Find My Worker</b></a>
+            </div>
+            <nav class="nav-content">
+                <div class="nav-menu">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="#" class="nav-link">About Us</a>
+                    <a href="#" class="nav-link">For Clients</a>
+                    <a href="#" class="nav-link">For Workers</a>
+                    <a href="#" class="nav-link">Contact Us</a>
+                </div>
+                <div class="nav-cta-button-container">
+                    <a href="/api/client/login" class="nav-link cta-button1">Log In</a>
+                    <a href="/api/client/register" class="nav-link cta-button">Register</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="page-wrapper">
+        <div class="section light-color-gradient">
+            <div class="container">
+                <div class="w-layout-grid hero-grid">
+                    <img src="/assets/client.jpg" loading="eager" width="470" alt="" class="hero-illustration" />
+                    <div class="text-box _500px">
+                        <h1 class="heading h1">Register as a Client</h1>
+                        <% if (errMsg) { %>
+                            <div class="error_message"><%= errMsg %></div>
+                        <% } %>
+                        <form action="/api/client/register" method="POST">
+                            <label for="name" class="form-label">Name:</label>
+                            <input type="text" class="text-field no-margin w-input" name="name" placeholder="Enter your name" required />
+                            <label for="email" class="form-label">Email address:</label>
+                            <input type="email" class="text-field no-margin w-input" name="email" placeholder="Enter your email" required />
+                            <label for="phone" class="form-label">Phone:</label>
+                            <input type="text" class="text-field no-margin w-input" name="phone" placeholder="Enter your phone" required />
+                            <label for="password" class="form-label">Password:</label>
+                            <input type="password" class="text-field no-margin w-input" name="password" placeholder="Enter password" required />
+                            <label for="address" class="form-label">Address:</label>
+                            <input type="text" class="text-field no-margin w-input" name="address" placeholder="Enter your address" required />
+                            <button type="submit" class="button w-button" style="margin-top: 15px;">Register</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Client Registration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="/styles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="nav-container">
+            <div class="logo-div">
+                <a href="/" class="logotext"><b>Find My Worker</b></a>
+            </div>
+            <nav class="nav-content">
+                <div class="nav-menu">
+                </div>
+                <div class="nav-cta-button-container">
+                    <a href="/api/client/login" class="nav-link cta-button1">Log In</a>
+                    <a href="/api/client/register" class="nav-link cta-button">Register</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="page-wrapper">
+        <div class="section light-color-gradient">
+            <div class="container">
+                <div class="w-layout-grid hero-grid">
+                    <img src="/assets/client.jpg" loading="eager" width="470" alt="" class="hero-illustration" />
+                    <div class="text-box _500px">
+                        <h1 class="heading h1">Register as a Client</h1>
+
+                        <% if (errMsg) { %>
+                            
+                            <div class="error_message"><%= errMsg %></div>
+                        <% } %>
+                        <form action="/api/client/register" method="POST">
+                            <label for="name" class="form-label">Name:</label>
+                            <input type="text" class="text-field no-margin w-input" name="name" placeholder="Enter your name" required />
+
+                            <label for="email" class="form-label">Email address:</label>
+                            <input type="email" class="text-field no-margin w-input" name="email" placeholder="Enter your email" required />
+
+                            <label for="phone" class="form-label">Phone:</label>
+                            <input type="text" class="text-field no-margin w-input" name="phone" placeholder="Enter your phone" required />
+
+                            <label for="password" class="form-label">Password:</label>
+                            <input type="password" class="text-field no-margin w-input" name="password" placeholder="Enter password" required />
+
+                            <label for="address" class="form-label">Address:</label>
+                            <input type="text" class="text-field no-margin w-input" name="address" placeholder="Enter your address" required />
+
+                            <button type="submit" class="button w-button" style="margin-top: 15px;">Register</button>
+                        </form>
+
+                        <p class="account-label">
+                            Already have an account? <a href="/api/client/login" class="cta-button1">Login here</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Client Registration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="/styles.css" rel="stylesheet" type="text/css" />
+    <style>
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .form-container {
+            max-width: 100%;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-label {
+            font-weight: 600;
+            margin-top: 15px;
+            display: block;
+        }
+
+        .text-field {
+            width: 100%;
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin-top: 6px;
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+
+        .button {
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        .error_message {
+            color: red;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .account-label {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .cta-button1 {
+            color: #007BFF;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-illustration {
+                max-width: 80%;
+                margin: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="nav-container">
+            <div class="logo-div">
+                <a href="/" class="logotext"><b>Find My Worker</b></a>
+            </div>
+            <nav class="nav-content">
+                <div class="nav-menu"></div>
+                <div class="nav-cta-button-container">
+                    <a href="/api/client/login" class="nav-link cta-button">Log In</a>
+                    <a href="/api/client/register" class="nav-link cta-button">Register</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="page-wrapper">
+        <div class="section light-color-gradient">
+            <div class="container">
+                <div class="hero-grid">
+                    <img src="/assets/client.jpg" loading="eager" width="470" alt="Client Illustration" class="hero-illustration" />
+
+                    <div class="form-container">
+                        <h1 class="heading h1">Register as a Client</h1>
+
+                        <% if (errMsg) { %>
+                            <div class="error_message"><%= errMsg %></div>
+                        <% } %>
+
+                        <form action="/api/client/register" method="POST">
+                            <label for="name" class="form-label">Name:</label>
+                            <input type="text" class="text-field" name="name" placeholder="Enter your name" required />
+
+                            <label for="email" class="form-label">Email address:</label>
+                            <input type="email" class="text-field" name="email" placeholder="Enter your email" required />
+
+                            <label for="phone" class="form-label">Phone:</label>
+                            <input type="text" class="text-field" name="phone" placeholder="Enter your phone" required />
+
+                            <label for="password" class="form-label">Password:</label>
+                            <input type="password" class="text-field" name="password" placeholder="Enter password" required />
+
+                            <label for="address" class="form-label">Address:</label>
+                            <input type="text" class="text-field" name="address" placeholder="Enter your address" required />
+
+                            <button type="submit" class="button">Register</button>
+                        </form>
+
+                        <p class="account-label">
+                            Already have an account? <a href="/api/client/login" class="cta-button1">Login here</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Client Registration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="/styles.css" rel="stylesheet" type="text/css" />
+    <style>
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .form-container {
+            max-width: 100%;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-label {
+            font-weight: 600;
+            margin-top: 15px;
+            display: block;
+        }
+
+        .text-field {
+            width: 100%;
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin-top: 6px;
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+
+        .button {
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        .error_message {
+            color: red;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .account-label {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .cta-button1 {
+            color: #007BFF;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-illustration {
+                max-width: 80%;
+                margin: auto;
+            }
+        }
+
+        .nav-bar {
+            background-color: #333;
+            padding: 10px 0;
+        }
+
+        .logotext {
+            color: white;
+            text-decoration: none;
+            font-size: 24px;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        .cta-button {
+            background-color: #007bff;
+            padding: 8px 15px;
+            border-radius: 5px;
+            color: white;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="nav-container">
+            <div class="logo-div">
+                <a href="/" class="logotext"><b>Find My Worker</b></a>
+            </div>
+            <nav class="nav-content">
+                <div class="nav-menu"></div>
+                <div class="nav-cta-button-container">
+                    <a href="/api/client/login" class="nav-link cta-button">Log In</a>
+                    <a href="/api/client/register" class="nav-link cta-button">Register</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="page-wrapper">
+        <div class="section light-color-gradient">
+            <div class="container">
+                <div class="hero-grid">
+                    <img src="/assets/client.jpg" loading="eager" width="470" alt="Client Illustration" class="hero-illustration" />
+
+                    <div class="form-container">
+                        <h1 class="heading h1">Register as a Client</h1>
+
+                        <% if (errMsg) { %>
+                            <div class="error_message"><%= errMsg %></div>
+                        <% } %>
+
+                        <form action="/api/client/register" method="POST">
+                            <label for="name" class="form-label">Name:</label>
+                            <input type="text" class="text-field" name="name" placeholder="Enter your name" required />
+
+                            <label for="email" class="form-label">Email address:</label>
+                            <input type="email" class="text-field" name="email" placeholder="Enter your email" required />
+
+                            <label for="phone" class="form-label">Phone:</label>
+                            <input type="text" class="text-field" name="phone" placeholder="Enter your phone" required />
+
+                            <label for="password" class="form-label">Password:</label>
+                            <input type="password" class="text-field" name="password" placeholder="Enter password" required />
+
+                            <label for="address" class="form-label">Address:</label>
+                            <input type="text" class="text-field" name="address" placeholder="Enter your address" required />
+
+                            <button type="submit" class="button">Register</button>
+                        </form>
+
+                        <p class="account-label">
+                            Already have an account? <a href="/api/client/login" class="cta-button1">Login here</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,704 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>My Tasks - Client</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="/styles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="nav-container">
+            <div class="logo-div">
+                <a href="/api/client/home" class="logotext"><b>Find My Worker</b></a>
+            </div>
+            <nav class="nav-content">
+                <div class="nav-menu">
+                    <a href="/api/client/home" class="nav-link">Home</a>
+                    <a href="/api/client/my-tasks" class="nav-link" style="color:#710101;"><b>My Tasks</b></a>
+                    <a href="/api/client/notifications" class="nav-link">Notifications</a>
+                    <a href="/api/client/profile" class="nav-link">My Profile</a>
+                </div>
+                <div class="nav-cta-button-container">
+                    <a href="/api/client/logout" class="nav-link cta-button1">Log Out</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="page-wrapper">
+        <div class="section light-color-gradient" style="padding-top:3%; width: 100%;">
+            <div class="container w-container" style="width: 100%; padding: 0;">
+                <div class="text-box _1500px center-align">
+                    <div class="container" style="width: 100%;">
+                        <div class="grid">
+                            <h2 class="heading h2" style="margin-bottom:30px; text-align: start;">Ongoing Tasks</h2>
+                        </div>
+                        <div class="grid" style="width: 100%; padding:0;">
+                            <% ongoingTasks.forEach(task => { %>
+                                <div class="card" style="width: 95%; margin:0; padding-left: 5%;">
+                                    <div class="card-body">
+                                        <p class="card-text" style="color: #000; font-size: 200%; font-weight: bold; text-align: start; margin-bottom: 0;"><%= task.title %></p>
+                                        <h1 class="card-title" style="color: #710101; font-size: larger; font-weight: bold; text-align: start; margin-top: 1%; margin-bottom: 0;">Category: <%= task.category %></h1>
+                                        <h1 class="card-title" style="color: #616161; font-size: medium; font-weight: bold; text-align: start; margin-top: 2%; margin-bottom: 0;">Date Published: <%= new Date(task.createdAt).toLocaleDateString() %></h1>
+                                        <h1 class="card-title" style="color: #a33434; font-size: medium; font-weight: bold; text-align: end; margin-top: 1%; margin-bottom: 0;"><%= task.intrestedWorkers.length %> Workers have applied!</h1>
+                                        <div class="grid">
+                                            <a href="/api/client/task/<%= task._id %>" class="nav-link cta-button1 w-nav-link" style="margin-top: 5%; text-align: center;">View Details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% }) %>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-box _1500px center-align" style="margin-top: 5%;">
+                    <div class="container" style="width: 100%;">
+                        <div class="grid">
+                            <h2 class="heading h2" style="margin-bottom:30px; text-align: start;">Previous Tasks</h2>
+                        </div>
+                        <div class="grid" style="width: 100%; padding:0;">
+                            <% previousTasks.forEach(task => { %>
+                                <div class="card" style="width: 95%; margin:0; padding-left: 5%;">
+                                    <div class="card-body">
+                                        <p class="card-text" style="color: #000; font-size: 200%; font-weight: bold; text-align: start; margin-bottom: 0;"><%= task.title %></p>
+                                        <h1 class="card-title" style="color: #710101; font-size: larger; font-weight: bold; text-align: start; margin-top: 1%; margin-bottom: 0;">Category: <%= task.category %></h1>
+                                        <h1 class="card-title" style="color: #616161; font-size: medium; font-weight: bold; text-align: start; margin-top: 2%; margin-bottom: 0;">Date Published: <%= new Date(task.createdAt).toLocaleDateString() %></h1>
+                                        <h1 class="card-title" style="color: #a33434; font-size: medium; font-weight: bold; text-align: end; margin-top: 1%; margin-bottom: 0;"><%= task.intrestedWorkers.length %> Workers had applied!</h1>
+                                    </div>
+                                </div>
+                            <% }) %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Client Requests - Find My Worker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="/styles.css" rel="stylesheet" type="text/css" />
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background-color: #f4f4f4; }
+        .nav-bar { background-color: #333; padding: 10px 0; }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logotext { color: white; text-decoration: none; font-size: 24px; }
+        .nav-content { display: flex; align-items: center; }
+        .nav-link { color: white; text-decoration: none; margin: 0 15px; }
+        .nav-link:hover { color: #007bff; }
+        .cta-button1 { background-color: #007bff; padding: 8px 15px; border-radius: 5px; color: white; text-decoration: none; }
+        .cta-button1:hover { background-color: #0056b3; }
+        .section { padding: 50px 0; }
+        .container { max-width: 1200px; margin: 0 auto; text-align: center; }
+        h1 { font-size: 36px; color: #333; }
+        .card { background-color: white; padding: 15px; margin: 10px auto; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); max-width: 500px; }
+        .card h3 { margin: 0 0 10px; color: #333; }
+        .card p { margin: 5px 0; color: #666; }
+        .error { color: red; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="nav-container">
+            <div class="logo-div">
+                <a href="/api/client/home" class="logotext"><b>Find My Worker</b></a>
+            </div>
+            <nav class="nav-content">
+                <div class="nav-menu">
+                    <a href="/api/client/home" class="nav-link">Home</a>
+                    <a href="/api/client/myrequests" class="nav-link" style="color:#710101;"><b>My Requests</b></a>
+                    <a href="/api/client/notification" class="nav-link">Notifications</a>
+                    <a href="/api/client/profile" class="nav-link">My Profile</a>
+                </div>
+                <div class="nav-cta-button-container">
+                    <a href="/api/client/logout" class="nav-link cta-button1">Log Out</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="container">
+            <h1>Your Requests</h1>
+            <% if (error) { %>
+                <p class="error"><%= error %></p>
+            <% } %>
+            <% if (tasks.length === 0) { %>
+                <p>No requests available yet.</p>
+            <% } else { %>
+                <% tasks.forEach(task => { %>
+                    <div class="card">
+                        <h3><%= task.title %></h3>
+                        <p><%= task.description %></p>
+                        <p><b>Category:</b> <%= task.category %></p>
+                        <p><b>Status:</b> <%= task.status %></p>
+                        <a href="/api/client/task/<%= task._id %>" class="nav-link cta-button1">View Details</a>
+                    </div>
+                <% }) %>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html> -->
+<!-- 
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Client Requests - Find My Worker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="/styles.css" rel="stylesheet" type="text/css" />
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background-color: #f4f4f4; }
+        .nav-bar { background-color: #333; padding: 10px 0; }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logotext { color: white; text-decoration: none; font-size: 24px; }
+        .nav-content { display: flex; align-items: center; }
+        .nav-link { color: white; text-decoration: none; margin: 0 15px; }
+        .nav-link:hover { color: #007bff; }
+        .cta-button1 { background-color: #007bff; padding: 8px 15px; border-radius: 5px; color: white; text-decoration: none; }
+        .cta-button1:hover { background-color: #0056b3; }
+        .section { padding: 50px 0; }
+        .container { max-width: 1200px; margin: 0 auto; text-align: center; }
+        h1 { font-size: 36px; color: #333; }
+        .grid { display: flex; flex-wrap: wrap; justify-content: center; }
+        .card { background-color: white; padding: 15px; margin: 10px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); width: 95%; max-width: 500px; }
+        .card-body { text-align: left; }
+        .card-text { margin: 5px 0; color: #666; }
+        .error { color: red; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="nav-container">
+            <div class="logo-div">
+                <a href="/api/client/home" class="logotext"><b>Find My Worker</b></a>
+            </div>
+            <nav class="nav-content">
+                <div class="nav-menu">
+                    <a href="/api/client/home" class="nav-link">Home</a>
+                    <a href="/api/client/myrequests" class="nav-link" style="color:#710101;"><b>My Requests</b></a>
+                    <a href="/api/client/notification" class="nav-link">Notifications</a>
+                    <a href="/api/client/profile" class="nav-link">My Profile</a>
+                </div>
+                <div class="nav-cta-button-container">
+                    <a href="/api/client/logout" class="nav-link cta-button1">Log Out</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="container">
+            <h1>Your Requests</h1>
+            <% if (error) { %>
+                <p class="error"><%= error %></p>
+            <% } %>
+            <% if (tasks.length === 0) { %>
+                <p>No requests available yet.</p>
+            <% } else { %>
+                <div class="grid" style="width: 100%; padding:0;">
+                    <% tasks.forEach(task => { %>
+                        <div class="card" style="width: 95%; margin:0; padding-left: 5%;">
+                            <div class="card-body">
+                                <p class="card-text" style="color: #000; font-size: 200%; font-weight: bold; text-align: start; margin-bottom: 0;"><%= task.title %></p>
+                                <p class="card-text"><%= task.description %></p>
+                                <p class="card-text"><b>Category:</b> <%= task.category %></p>
+                                <p class="card-text"><b>Status:</b> <%= task.status %></p>
+                                <a href="/api/client/task/<%= task._id %>" class="nav-link cta-button1">View Details</a>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html> -->
+<!-- 
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Client Requests - Find My Worker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="/styles.css" rel="stylesheet" type="text/css" />
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background-color: #f4f4f4; }
+        .nav-bar { background-color: #333; padding: 10px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .nav-container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 0 20px; 
+        }
+        .logotext { color: white; text-decoration: none; font-size: 24px; font-weight: bold; }
+        .nav-content { display: flex; align-items: center; gap: 20px; }
+        .nav-menu { display: flex; align-items: center; gap: 25px; }
+        .nav-link { color: white; text-decoration: none; font-size: 16px; padding: 8px 12px; transition: color 0.3s; }
+        .nav-link:hover { color: #007bff; }
+        .cta-button1 { background-color: #007bff; padding: 8px 15px; border-radius: 5px; color: white; text-decoration: none; transition: background-color 0.3s; }
+        .cta-button1:hover { background-color: #0056b3; }
+        .section { padding: 50px 0; }
+        .container { max-width: 1200px; margin: 0 auto; text-align: center; }
+        h1 { font-size: 36px; color: #333; }
+        .grid { display: flex; flex-wrap: wrap; justify-content: center; }
+        .card { background-color: white; padding: 15px; margin: 10px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); width: 95%; max-width: 500px; }
+        .card-body { text-align: left; }
+        .card-text { margin: 5px 0; color: #666; }
+        .error { color: red; margin: 10px 0; }
+        @media (max-width: 768px) { 
+            .nav-container { flex-direction: column; padding: 10px; }
+            .nav-content { margin-top: 10px; flex-direction: column; gap: 15px; }
+            .nav-menu { flex-direction: column; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="nav-container">
+            <div class="logo-div">
+                <a href="/api/client/home" class="logotext"><b>Find My Worker</b></a>
+            </div>
+            <nav class="nav-content">
+                <div class="nav-menu">
+                    <a href="/api/client/home" class="nav-link">Home</a>
+                    <a href="/api/client/myrequests" class="nav-link" style="color:#710101;"><b>My Requests</b></a>
+                    <a href="/api/client/notification" class="nav-link">Notifications</a>
+                    <a href="/api/client/profile" class="nav-link">My Profile</a>
+                </div>
+                <div class="nav-cta-button-container">
+                    <a href="/api/client/logout" class="nav-link cta-button1">Log Out</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="container">
+            <h1>Your Requests</h1>
+            <% if (error) { %>
+                <p class="error"><%= error %></p>
+            <% } %>
+            <% if (tasks.length === 0) { %>
+                <p>No requests available yet.</p>
+            <% } else { %>
+                <div class="grid" style="width: 100%; padding:0;">
+                    <% tasks.forEach(task => { %>
+                        <div class="card" style="width: 95%; margin:0; padding-left: 5%;">
+                            <div class="card-body">
+                                <p class="card-text" style="color: #000; font-size: 200%; font-weight: bold; text-align: start; margin-bottom: 0;"><%= task.title %></p>
+                                <p class="card-text"><%= task.description %></p>
+                                <p class="card-text"><b>Category:</b> <%= task.category %></p>
+                                <p class="card-text"><b>Status:</b> <%= task.status %></p>
+                                <a href="/api/client/task/<%= task._id %>" class="nav-link cta-button1">View Details</a>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Client Requests - Find My Worker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="/styles.css" rel="stylesheet" type="text/css" />
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background-color: #f4f4f4; }
+        .nav-bar { background-color: #333; padding: 10px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .nav-container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 0 20px; 
+        }
+        .logotext { color: white; text-decoration: none; font-size: 24px; font-weight: bold; }
+        .nav-content { display: flex; align-items: center; gap: 20px; }
+        .nav-menu { display: flex; align-items: center; gap: 25px; }
+        .nav-link { color: white; text-decoration: none; font-size: 16px; padding: 8px 12px; transition: color 0.3s; }
+        .nav-link:hover { color: #007bff; }
+        .cta-button1 { background-color: #007bff; padding: 8px 15px; border-radius: 5px; color: white; text-decoration: none; transition: background-color 0.3s; }
+        .cta-button1:hover { background-color: #0056b3; }
+        .section { padding: 50px 0; }
+        .container { max-width: 1200px; margin: 0 auto; text-align: center; }
+        h1 { font-size: 36px; color: #333; }
+        .grid { display: flex; flex-wrap: wrap; justify-content: center; }
+        .card { background-color: white; padding: 15px; margin: 10px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); width: 95%; max-width: 500px; }
+        .card-body { text-align: left; }
+        .card-text { margin: 5px 0; color: #666; }
+        .error { color: red; margin: 10px 0; }
+        @media (max-width: 768px) { 
+            .nav-container { flex-direction: column; padding: 10px; }
+            .nav-content { margin-top: 10px; flex-direction: column; gap: 15px; }
+            .nav-menu { flex-direction: column; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="nav-container">
+            <div class="logo-div">
+                <a href="/api/client/home" class="logotext"><b>Find My Worker</b></a>
+            </div>
+            <nav class="nav-content">
+                <div class="nav-menu">
+                    <a href="/api/client/home" class="nav-link">Home</a>
+                    <a href="/api/client/myrequests" class="nav-link" style="color:#710101;"><b>My Requests</b></a>
+                    <a href="/api/client/profile" class="nav-link">My Profile</a>
+                </div>
+                <div class="nav-cta-button-container">
+                    <a href="/api/client/logout" class="nav-link cta-button1">Log Out</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="container">
+            <h1>Your Requests</h1>
+            <a href="/api/client/post-task" class="nav-link cta-button1" style="margin-bottom: 20px; display: inline-block;">+ Add New Request</a>
+            <% if (error) { %>
+                <p class="error"><%= error %></p>
+            <% } %>
+            <% if (tasks.length === 0) { %>
+                <p>No requests available yet.</p>
+            <% } else { %>
+                <div class="grid" style="width: 100%; padding:0;">
+                    <% tasks.forEach(task => { %>
+                        <div class="card" style="width: 95%; margin:0; padding-left: 5%;">
+                            <div class="card-body">
+                                <p class="card-text" style="color: #000; font-size: 200%; font-weight: bold; text-align: start; margin-bottom: 0;"><%= task.title %></p>
+                                <p class="card-text"><%= task.description %></p>
+                                <p class="card-text"><b>Category:</b> <%= task.category %></p>
+                                <p class="card-text"><b>Status:</b> <%= task.status %></p>
+                                <a href="/api/client/task/<%= task._id %>" class="nav-link cta-button1">View Details</a>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+            <% } %>
+            <h2>Ongoing Requests</h2>
+            <% if (ongoingTasks.length === 0) { %>
+                <p>No ongoing requests.</p>
+            <% } else { %>
+                <div class="grid" style="width: 100%; padding:0;">
+                    <% ongoingTasks.forEach(task => { %>
+                        <div class="card" style="width: 95%; margin:0; padding-left: 5%;">
+                            <div class="card-body">
+                                <p class="card-text" style="font-size: 20px;"><b><%= task.title %></b></p>
+                                <p class="card-text"><%= task.description %></p>
+                                <p class="card-text"><b>Category:</b> <%= task.category %></p>
+                                <p class="card-text"><b>Status:</b> <%= task.status %></p>
+                                <a href="/api/client/task/<%= task._id %>" class="nav-link cta-button1">View Details</a>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+            <% } %>
+
+            <h2 style="margin-top: 40px;">Completed Requests</h2>
+            <% if (previousTasks.length === 0) { %>
+                <p>No completed requests yet.</p>
+            <% } else { %>
+                <div class="grid" style="width: 100%; padding:0;">
+                    <% previousTasks.forEach(task => { %>
+                        <div class="card" style="width: 95%; margin:0; padding-left: 5%;">
+                            <div class="card-body">
+                                <p class="card-text" style="font-size: 20px;"><b><%= task.title %></b></p>
+                                <p class="card-text"><%= task.description %></p>
+                                <p class="card-text"><b>Category:</b> <%= task.category %></p>
+                                <p class="card-text"><b>Status:</b> <%= task.status %></p>
+                                <a href="/api/client/task/<%= task._id %>" class="nav-link cta-button1">View Details</a>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Client Requests - Find My Worker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="/styles.css" rel="stylesheet" type="text/css" />
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background-color: #f4f4f4; }
+        .nav-bar { background-color: #333; padding: 10px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .nav-container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 0 20px; 
+        }
+        .logotext { color: white; text-decoration: none; font-size: 24px; font-weight: bold; }
+        .nav-content { display: flex; align-items: center; gap: 20px; }
+        .nav-menu { display: flex; align-items: center; gap: 25px; }
+        .nav-link { color: white; text-decoration: none; font-size: 16px; padding: 8px 12px; transition: color 0.3s; }
+        .nav-link:hover { color: #007bff; }
+        .cta-button1, .card .cta-button1 {
+            background-color: #007bff; 
+            padding: 8px 15px; 
+            border-radius: 5px; 
+            color: white; 
+            text-decoration: none; 
+            transition: background-color 0.3s;
+            display: inline-block;
+        }
+        .cta-button1:hover, .card .cta-button1:hover { 
+            background-color: #0056b3; 
+        }
+        .section { padding: 50px 0; }
+        .container { max-width: 1200px; margin: 0 auto; text-align: center; }
+        h1 { font-size: 36px; color: #333; }
+        .grid { display: flex; flex-wrap: wrap; justify-content: center; }
+        .card { background-color: white; padding: 15px; margin: 10px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); width: 95%; max-width: 500px; }
+        .card-body { text-align: left; }
+        .card-text { margin: 5px 0; color: #666; }
+        .error { color: red; margin: 10px 0; }
+        @media (max-width: 768px) { 
+            .nav-container { flex-direction: column; padding: 10px; }
+            .nav-content { margin-top: 10px; flex-direction: column; gap: 15px; }
+            .nav-menu { flex-direction: column; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="nav-container">
+            <div class="logo-div">
+                <a href="/api/client/home" class="logotext"><b>Find My Worker</b></a>
+            </div>
+            <nav class="nav-content">
+                <div class="nav-menu">
+                    <a href="/api/client/home" class="nav-link">Home</a>
+                    <a href="/api/client/myrequests" class="nav-link" style="color:#710101;"><b>My Requests</b></a>
+                    <a href="/api/client/profile" class="nav-link">My Profile</a>
+                </div>
+                <div class="nav-cta-button-container">
+                    <a href="/api/client/logout" class="nav-link cta-button">Log Out</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="container">
+            <!-- <h1>Your Requests</h1> -->
+            <!-- <form method="GET" action="/api/client/myrequests" style="text-align: center; margin: 20px 0;">
+                <select name="status" onchange="this.form.submit()" style="padding: 10px; margin-right: 10px; border-radius: 5px;">
+                    <option value="">All Statuses</option>
+                    <option value="open" <%= selectedStatus === 'open' ? 'selected' : '' %>>Open</option>
+                    <option value="ongoing" <%= selectedStatus === 'ongoing' ? 'selected' : '' %>>Ongoing</option>
+                    <option value="completed" <%= selectedStatus === 'completed' ? 'selected' : '' %>>Completed</option>
+                </select>
+            
+                <% if (selectedStatus) { %>
+                    <a href="/api/client/myrequests" class="cta-button" style="margin-left: 10px; padding: 10px 20px;">Reset Filters</a>
+                <% } %>
+            </form>            
+            <a href="/api/client/post-task" class="cta-button1" style="margin-bottom: 20px; display: inline-block;">+ Add New Request</a>
+            <h1>Your Requests</h1>
+            <% if (error) { %>
+                <p class="error"><%= error %></p>
+            <% } %>
+            <% if (tasks.length === 0) { %>
+                <p>No requests available yet.</p>
+            <% } else { %>
+                <div class="grid" style="width: 100%; padding:0;">
+                    <% tasks.forEach(task => { %>
+                        <div class="card" style="width: 95%; margin:0; padding-left: 5%;">
+                            <div class="card-body">
+                                <p class="card-text" style="color: #000; font-size: 200%; font-weight: bold; text-align: start; margin-bottom: 0;"><%= task.title %></p>
+                                <p class="card-text"><%= task.description %></p>
+                                <p class="card-text"><b>Category:</b> <%= task.category %></p>
+                                <p class="card-text"><b>Status:</b> <%= task.status %></p>
+                                <a href="/api/client/task/<%= task._id %>" class="cta-button1">View Details</a>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+            <% } %>
+            <h2>Ongoing Requests</h2>
+            <% if (ongoingTasks.length === 0) { %>
+                <p>No ongoing requests.</p>
+            <% } else { %>
+                <div class="grid" style="width: 100%; padding:0;">
+                    <% ongoingTasks.forEach(task => { %>
+                        <div class="card" style="width: 95%; margin:0; padding-left: 5%;">
+                            <div class="card-body">
+                                <p class="card-text" style="font-size: 20px;"><b><%= task.title %></b></p>
+                                <p class="card-text"><%= task.description %></p>
+                                <p class="card-text"><b>Category:</b> <%= task.category %></p>
+                                <p class="card-text"><b>Status:</b> <%= task.status %></p>
+                                
+                                <a href="/api/client/task/<%= task._id %>" class="cta-button1">View Details</a>
+                                <a href="/api/client/task/<%= task._id %>/interested" class="cta-button1" style="margin-left: 10px;">Interested Workers
+                                    (<%= task.intrestedWorkers?.length || 0 %>)
+                                </a>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+            <% } %>            
+            <h2>Ongoing Requests</h2>
+            <% if (ongoingTasks.length === 0) { %>
+                <p>No ongoing requests.</p>
+            <% } else { %>
+                <div class="grid" style="width: 100%; padding:0;">
+                    <% ongoingTasks.forEach(task => { %>
+                        <div class="card" style="width: 95%; margin:0; padding-left: 5%;">
+                            <div class="card-body">
+                                <p class="card-text" style="font-size: 20px;"><b><%= task.title %></b></p>
+                                <p class="card-text"><%= task.description %></p>
+                                <p class="card-text"><b>Category:</b> <%= task.category %></p>
+                                <p class="card-text"><b>Status:</b> <%= task.status %></p>
+                                <a href="/api/client/task/<%= task._id %>" class="cta-button1">View Details</a>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+            <% } %> 
+
+            <h2 style="margin-top: 40px;">Completed Requests</h2>
+            <% if (previousTasks.length === 0) { %>
+                <p>No completed requests yet.</p>
+            <% } else { %>
+                <div class="grid" style="width: 100%; padding:0;">
+                    <% previousTasks.forEach(task => { %>
+                        <div class="card" style="width: 95%; margin:0; padding-left: 5%;">
+                            <div class="card-body">
+                                <p class="card-text" style="font-size: 20px;"><b><%= task.title %></b></p>
+                                <p class="card-text"><%= task.description %></p>
+                                <p class="card-text"><b>Category:</b> <%= task.category %></p>
+                                <p class="card-text"><b>Status:</b> <%= task.status %></p>
+                                <a href="/api/client/task/<%= task._id %>" class="cta-button1">View Details</a>
+                                <a href="/api/client/task/<%= task._id %>/interested" class="cta-button1" style="margin-left: 10px;">Interested Workers
+                                    (<%= task.intrestedWorkers?.length || 0 %>)
+                                </a>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+            <% } %> -->
+            <form method="GET" action="/api/client/myrequests" style="text-align: center; margin: 20px 0;">
+                <select name="status" onchange="this.form.submit()" style="padding: 10px; margin-right: 10px; border-radius: 5px;">
+                    <option value="">All Requests</option>
+                    <option value="open" <%= selectedStatus === 'open' ? 'selected' : '' %>>Open</option>
+                    <!-- <option value="ongoing" <%= selectedStatus === 'ongoing' ? 'selected' : '' %>>Ongoing</option> -->
+                    <option value="completed" <%= selectedStatus === 'completed' ? 'selected' : '' %>>Completed</option>
+                </select>
+            
+                <% if (selectedStatus) { %>
+                    <a href="/api/client/myrequests" class="cta-button" style="margin-left: 10px; padding: 10px 20px;">Reset Filters</a>
+                <% } %>
+            </form>
+            
+            <a href="/api/client/post-task" class="cta-button1" style="margin-bottom: 20px; display: inline-block;">+ Add New Request</a>
+            <h1>Your Requests</h1>
+            
+            <% if (error) { %>
+                <p class="error"><%= error %></p>
+            <% } %>
+            
+            <!-- If a specific filter is selected -->
+            <% if (selectedStatus) { %>
+                <% if (tasks.length === 0) { %>
+                    <p>No <%= selectedStatus %> requests available.</p>
+                <% } else { %>
+                    <div class="grid" style="width: 100%; padding:0;">
+                        <% tasks.forEach(task => { %>
+                            <div class="card" style="width: 95%; margin:0; padding-left: 5%;">
+                                <div class="card-body">
+                                    <p class="card-text" style="color: #000; font-size: 200%; font-weight: bold; text-align: start; margin-bottom: 0;"><%= task.title %></p>
+                                    <p class="card-text"><%= task.description %></p>
+                                    <p class="card-text"><b>Category:</b> <%= task.category %></p>
+                                    <p class="card-text"><b>Status:</b> <%= task.status %></p>
+                                    <a href="/api/client/task/<%= task._id %>" class="cta-button1">View Details</a>
+                                    <a href="/api/client/task/<%= task._id %>/interested" class="cta-button1" style="margin-left: 10px;">Interested Workers
+                                        (<%= task.intrestedWorkers?.length || 0 %>)
+                                    </a>
+                                </div>
+                            </div>
+                        <% }) %>
+                    </div>
+                <% } %>
+            
+            <% } else { %>
+                <!-- Default View (No Filter): Show Ongoing and Completed Sections -->
+                <h2></h2>
+                <% if (ongoingTasks.length === 0) { %>
+                    <p>No ongoing requests.</p>
+                <% } else { %>
+                    <div class="grid" style="width: 100%; padding:0;">
+                        <% ongoingTasks.forEach(task => { %>
+                            <div class="card" style="width: 95%; margin:0; padding-left: 5%;">
+                                <div class="card-body">
+                                    <p class="card-text" style="font-size: 20px;"><b><%= task.title %></b></p>
+                                    <p class="card-text"><%= task.description %></p>
+                                    <p class="card-text"><b>Category:</b> <%= task.category %></p>
+                                    <p class="card-text"><b>Status:</b> <%= task.status %></p>
+                                    <a href="/api/client/task/<%= task._id %>" class="cta-button1">View Details</a>
+                                    <a href="/api/client/task/<%= task._id %>/interested" class="cta-button1" style="margin-left: 10px;">Interested Workers
+                                        (<%= task.intrestedWorkers?.length || 0 %>)
+                                    </a>
+                                </div>
+                            </div>
+                        <% }) %>
+                    </div>
+                <% } %>
+            
+                <h2 style="margin-top: 40px;">Completed Requests</h2>
+                <% if (previousTasks.length === 0) { %>
+                    <p>No completed requests yet.</p>
+                <% } else { %>
+                    <div class="grid" style="width: 100%; padding:0;">
+                        <% previousTasks.forEach(task => { %>
+                            <div class="card" style="width: 95%; margin:0; padding-left: 5%;">
+                                <div class="card-body">
+                                    <p class="card-text" style="font-size: 20px;"><b><%= task.title %></b></p>
+                                    <p class="card-text"><%= task.description %></p>
+                                    <p class="card-text"><b>Category:</b> <%= task.category %></p>
+                                    <p class="card-text"><b>Status:</b> <%= task.status %></p>
+                                    <a href="/api/client/task/<%= task._id %>" class="cta-button1">View Details</a>
+                                    <a href="/api/client/task/<%= task._id %>/interested" class="cta-button1" style="margin-left: 10px;">Interested Workers
+                                        (<%= task.intrestedWorkers?.length || 0 %>)
+                                    </a>
+                                </div>
+                            </div>
+                        <% }) %>
+                    </div>
+                <% } %>
+            <% } %>            
+        </div>
+    </div>
+</body>
+</html>

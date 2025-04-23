@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Task Details - Client</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="/styles.css" rel="stylesheet" type="text/css" />
+    <style>
+        .details-box {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            margin: auto;
+            margin-top: 40px;
+        }
+        .details-box h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 28px;
+            color: #333;
+        }
+        .details-box p {
+            font-size: 16px;
+            margin: 10px 0;
+            color: #444;
+        }
+        .back-button {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+        /* Navigation Bar Styling */
+        .nav-bar { background-color: #333; padding: 10px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .nav-container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 0 20px; 
+        }
+        .logotext { color: white; text-decoration: none; font-size: 24px; font-weight: bold; }
+        .nav-content { display: flex; align-items: center; gap: 20px; }
+        .nav-menu { display: flex; align-items: center; gap: 25px; }
+        .nav-link { color: white; text-decoration: none; font-size: 16px; padding: 8px 12px; transition: color 0.3s; }
+        .nav-link:hover { color: #007bff; }
+        .cta-button1 { background-color: #007bff; padding: 8px 15px; border-radius: 5px; color: white; text-decoration: none; transition: background-color 0.3s; }
+        .cta-button1:hover { background-color: #0056b3; }
+        @media (max-width: 768px) { 
+            .nav-container { flex-direction: column; padding: 10px; }
+            .nav-content { margin-top: 10px; flex-direction: column; gap: 15px; }
+            .nav-menu { flex-direction: column; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="nav-bar">
+        <div class="nav-container">
+            <div class="logo-div">
+                <a href="/api/client/home" class="logotext"><b>Find My Worker</b></a>
+            </div>
+            <nav class="nav-content">
+                <div class="nav-menu"></div>
+                <div class="nav-cta-button-container">
+                    <a href="/api/client/logout" class="nav-link cta-button">Log Out</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Task Details Section -->
+    <div class="page-wrapper">
+        <div class="section light-color-gradient">
+            <div class="details-box">
+                <h2>Task Details</h2>
+                <p><b>Title:</b> <%= task.title %></p>
+                <p><b>Description:</b> <%= task.description %></p>
+                <p><b>Category:</b> <%= task.category %></p>
+                <p><b>Status:</b> <%= task.status %></p>
+                <p><b>Date Published:</b> <%= new Date(task.createdAt).toLocaleDateString() %></p>
+
+                <% if (task.status !== 'completed') { %>
+                    <form action="/api/client/task/<%= task._id %>/complete" method="POST" style="text-align: right;">
+                        <button type="submit" class="back-button" style="background-color: green; margin-left: auto;">
+                            ✓ Mark as Completed
+                        </button>
+                    </form>
+                <% } %>                
+
+                <a href="javascript:history.back()" class="back-button">← Back</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
