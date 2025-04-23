@@ -41,5 +41,5 @@ Authentication: JWT, Cookies
 
 1. **Clone the Repository**
 ```bash
-git clone https://github.com/yourusername/find-my-worker.git
+git clone https://github.com/Garg9/Find-My-Worker
 cd find-my-worker
