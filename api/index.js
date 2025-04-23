@@ -3,22 +3,22 @@
 
 // module.exports = serverless(app);
 
-// const ejs = require('ejs');
-// const path = require('path');
+const ejs = require('ejs');
+const path = require('path');
 
-// module.exports = (req, res) => {
-//   // Set the path to your 'views' folder
-//   const viewsDir = path.join(__dirname, '..', 'views');
+module.exports = (req, res) => {
+  // Set the path to your 'views' folder
+  const viewsDir = path.join(__dirname, '..', 'views');
 
-//   // Render the 'index.ejs' file
-//   ejs.renderFile(path.join(viewsDir, 'index.ejs'), {}, (err, html) => {
-//     if (err) {
-//       res.status(500).send('Error rendering the page');
-//     } else {
-//       res.status(200).send(html);
-//     }
-//   });
-// };
+  // Render the 'index.ejs' file
+  ejs.renderFile(path.join(viewsDir, 'index.ejs'), {}, (err, html) => {
+    if (err) {
+      res.status(500).send('Error rendering the page');
+    } else {
+      res.status(200).send(html);
+    }
+  });
+};
 
 // const serverless = require('serverless-http');
 // const express = require('express');
@@ -81,20 +81,20 @@
 // // Export for serverless
 // module.exports = serverless(app);
 
-const serverless = require('serverless-http');
-const express = require('express');
-const path = require('path');
+// const serverless = require('serverless-http');
+// const express = require('express');
+// const path = require('path');
 
-const app = express();
+// const app = express();
 
-// Set up EJS
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, '../views'));
+// // Set up EJS
+// app.set('view engine', 'ejs');
+// app.set('views', path.join(__dirname, '../views'));
 
-// Simple index route
-app.get('/', (req, res) => {
-  res.render('index'); // Rendering the index.ejs file
-});
+// // Simple index route
+// app.get('/', (req, res) => {
+//   res.render('index'); // Rendering the index.ejs file
+// });
 
 // Export for serverless
 module.exports = serverless(app);
