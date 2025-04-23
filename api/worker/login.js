@@ -1,16 +1,15 @@
-const path = require('path');
 const ejs = require('ejs');
+const path = require('path');
 
 module.exports = (req, res) => {
-  const viewsDir = path.join(__dirname, '../../views/worker');
-  const filePath = path.join(viewsDir, 'workerlogin.ejs');
+  const viewsDir = path.join(__dirname, '..', '..', 'views', 'worker');
 
-  ejs.renderFile(filePath, {}, {}, (err, str) => {
+  ejs.renderFile(path.join(viewsDir, 'workerlogin.ejs'), {}, (err, html) => {
     if (err) {
+      console.error("EJS Render Error:", err);  // Helpful debug
       res.status(500).send('Error rendering worker login page');
     } else {
-      res.setHeader('Content-Type', 'text/html');
-      res.status(200).send(str);
+      res.status(200).send(html);
     }
   });
 };
