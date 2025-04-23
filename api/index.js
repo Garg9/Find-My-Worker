@@ -80,3 +80,4 @@ app.get('/worker/login', (req, res) => {
 
 // Export for serverless
 module.exports = serverless(app);
+
