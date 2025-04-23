@@ -149,189 +149,161 @@
 
 
 
-// const express = require('express');
-// const mongoose = require('mongoose');
-// const bodyParser = require('body-parser');
-// const cookieParser = require('cookie-parser');
-// const path = require('path');
-// const session = require('express-session');
-// const flash = require('connect-flash');
-// const MongoStore = require('connect-mongo');
-// require('dotenv').config();
-
-// const adminRoutes = require('./routes/admin');
-// const clientRoutes = require('./routes/client');
-// const workerRoutes = require('./routes/worker');
-
-// const app = express();
-
-// // Use bodyParser middleware for form data and JSON
-// app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(bodyParser.json());
-
-// // Use cookieParser middleware
-// app.use(cookieParser());
-
-// // Test route to check JWT cookie
-// app.get('/test-cookie', (req, res) => {
-//   const token = req.cookies.jwt;
-//   if (token) {
-//     return res.send('JWT Cookie is set');
-//   } else {
-//     return res.send('No JWT Cookie found');
-//   }
-// });
-
-// // Static file serving
-// app.use(express.static(path.join(__dirname, 'public')));
-
-// // Set up session middleware with MongoDB store
-// app.use(session({
-//   secret: process.env.SESSION_SECRET || 'RfGzlWClyL1HVDiLuFdviYr7BwKYtOxyhd9se/Wp5k=',
-//   resave: false,
-//   saveUninitialized: true,
-//   store: MongoStore.create({
-//     mongoUrl: process.env.MONGODB_CONNECTION_URI,
-//     ttl: 14 * 24 * 60 * 60 // 14 days
-//   })
-// }));
-
-// // Use connect-flash middleware for flash messages
-// app.use(flash());
-
-// // Global variables for flash messages
-// app.use((req, res, next) => {
-//   res.locals.success_msg = req.flash('success_msg');
-//   res.locals.error_msg = req.flash('error_msg');
-//   next();
-// });
-
-// // Set the view engine to EJS and configure views path
-// app.set('view engine', 'ejs');
-// app.set('views', path.join(__dirname, 'views'));
-
-// // Routes
-// app.get('/', (req, res) => res.render('index')); // Homepage
-// app.use('/api/admin', adminRoutes);
-// app.use('/api/client', clientRoutes);
-// app.use('/api/worker', workerRoutes);
-
-// // Set Mongoose strictQuery option to suppress deprecation warning
-// mongoose.set('strictQuery', true);
-
-// // Reuse MongoDB connection for serverless
-// const mongooseConnection = mongoose.connect(process.env.MONGODB_CONNECTION_URI, {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-//   serverSelectionTimeoutMS: 5000, // Timeout after 5 seconds
-// });
-
-// // Export a handler for Vercel
-// // module.exports = async (req, res) => {
-// //   try {
-// //     console.log('Attempting to connect to MongoDB...');
-// //     if (mongoose.connection.readyState !== 1) {
-// //       await mongooseConnection;
-// //       console.log('MongoDB Connected');
-// //     } else {
-// //       console.log('MongoDB connection already established');
-// //     }
-// //     return app(req, res);
-// //   } catch (err) {
-// //     console.error('MongoDB Connection Error:', err);
-// //     res.status(500).send('Internal Server Error');
-// //   }
-// // };
-
-// // mongoose.connect(process.env.MONGODB_CONNECTION_URI, {
-// //   useNewUrlParser: true,
-// //   useUnifiedTopology: true,
-// // }).then(() => {
-// //   console.log('✅ Connected to MongoDB Atlas');
-
-// //   const PORT = process.env.PORT || 3000;
-// //   app.listen(PORT, () => {
-// //     console.log(`🚀 Server is running at http://localhost:${PORT}`);
-// //   });
-// // }).catch(err => {
-// //   console.error('❌ MongoDB Connection Error:', err);
-// // });
-
-// // if (process.env.VERCEL) {
-// //   module.exports = async (req, res) => {
-// //     if (mongoose.connection.readyState !== 1) {
-// //       await mongoose.connect(process.env.MONGODB_CONNECTION_URI);
-// //     }
-// //     return app(req, res);
-// //   };
-// // } else {
-// //   mongoose.connect(process.env.MONGODB_CONNECTION_URI)
-// //     .then(() => {
-// //       app.listen(process.env.PORT || 3000, () =>
-// //         console.log(`Server running at http://localhost:${process.env.PORT || 3000}`)
-// //       );
-// //     })
-// //     .catch(err => console.error('MongoDB Connection Error:', err));
-// // }
-// // // Start the server
-// // const PORT = process.env.PORT || 3000;
-// // app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-// // console.log('Views path:', path.join(__dirname, 'views'));
-
-// // If running on Vercel (serverless), export a handler
-// if (process.env.VERCEL) {
-//   module.exports = async (req, res) => {
-//     try {
-//       if (mongoose.connection.readyState !== 1) {
-//         await mongooseConnection;
-//         console.log('✅ MongoDB connected (Vercel)');
-//       }
-
-//       return app(req, res); // serverless-style handler
-//     } catch (err) {
-//       console.error('❌ Vercel MongoDB connection error:', err);
-//       res.status(500).send('Internal Server Error');
-//     }
-//   };
-// } else {
-//   // If running locally, start an Express server
-//   mongooseConnection.then(() => {
-//     console.log('✅ MongoDB connected (Local)');
-//     const PORT = process.env.PORT || 3000;
-//     app.listen(PORT, () => {
-//       console.log(`🚀 Server running at http://localhost:${PORT}`);
-//     });
-//   }).catch(err => {
-//     console.error('❌ Local MongoDB connection error:', err);
-//   });
-// }
-
 const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const path = require('path');
+const session = require('express-session');
+const flash = require('connect-flash');
+const MongoStore = require('connect-mongo');
+require('dotenv').config();
+
+const adminRoutes = require('./routes/admin');
+const clientRoutes = require('./routes/client');
+const workerRoutes = require('./routes/worker');
+
 const app = express();
 
-// Setup EJS
+// Use bodyParser middleware for form data and JSON
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+// Use cookieParser middleware
+app.use(cookieParser());
+
+// Test route to check JWT cookie
+app.get('/test-cookie', (req, res) => {
+  const token = req.cookies.jwt;
+  if (token) {
+    return res.send('JWT Cookie is set');
+  } else {
+    return res.send('No JWT Cookie found');
+  }
+});
+
+// Static file serving
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Set up session middleware with MongoDB store
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'RfGzlWClyL1HVDiLuFdviYr7BwKYtOxyhd9se/Wp5k=',
+  resave: false,
+  saveUninitialized: true,
+  store: MongoStore.create({
+    mongoUrl: process.env.MONGODB_CONNECTION_URI,
+    ttl: 14 * 24 * 60 * 60 // 14 days
+  })
+}));
+
+// Use connect-flash middleware for flash messages
+app.use(flash());
+
+// Global variables for flash messages
+app.use((req, res, next) => {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  next();
+});
+
+// Set the view engine to EJS and configure views path
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// Define Routes
-app.get('/', (req, res) => {
-  res.render('index');
+// Routes
+app.get('/', (req, res) => res.render('index')); // Homepage
+app.use('/api/admin', adminRoutes);
+app.use('/api/client', clientRoutes);
+app.use('/api/worker', workerRoutes);
+
+// Set Mongoose strictQuery option to suppress deprecation warning
+mongoose.set('strictQuery', true);
+
+// Reuse MongoDB connection for serverless
+const mongooseConnection = mongoose.connect(process.env.MONGODB_CONNECTION_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 5000, // Timeout after 5 seconds
 });
 
-app.get('/admin/login', (req, res) => {
-  res.render('admin/admin_login');
-});
+// Export a handler for Vercel
+// module.exports = async (req, res) => {
+//   try {
+//     console.log('Attempting to connect to MongoDB...');
+//     if (mongoose.connection.readyState !== 1) {
+//       await mongooseConnection;
+//       console.log('MongoDB Connected');
+//     } else {
+//       console.log('MongoDB connection already established');
+//     }
+//     return app(req, res);
+//   } catch (err) {
+//     console.error('MongoDB Connection Error:', err);
+//     res.status(500).send('Internal Server Error');
+//   }
+// };
 
-app.get('/client/login', (req, res) => {
-  res.render('client/clientlogin');
-});
+// mongoose.connect(process.env.MONGODB_CONNECTION_URI, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// }).then(() => {
+//   console.log('✅ Connected to MongoDB Atlas');
 
-app.get('/worker/login', (req, res) => {
-  res.render('worker/workerlogin');
-});
+//   const PORT = process.env.PORT || 3000;
+//   app.listen(PORT, () => {
+//     console.log(`🚀 Server is running at http://localhost:${PORT}`);
+//   });
+// }).catch(err => {
+//   console.error('❌ MongoDB Connection Error:', err);
+// });
 
-// Start server
-app.listen(3000, () => {
-  console.log('Server running on http://localhost:3000');
-});
+// if (process.env.VERCEL) {
+//   module.exports = async (req, res) => {
+//     if (mongoose.connection.readyState !== 1) {
+//       await mongoose.connect(process.env.MONGODB_CONNECTION_URI);
+//     }
+//     return app(req, res);
+//   };
+// } else {
+//   mongoose.connect(process.env.MONGODB_CONNECTION_URI)
+//     .then(() => {
+//       app.listen(process.env.PORT || 3000, () =>
+//         console.log(`Server running at http://localhost:${process.env.PORT || 3000}`)
+//       );
+//     })
+//     .catch(err => console.error('MongoDB Connection Error:', err));
+// }
+// // Start the server
+// const PORT = process.env.PORT || 3000;
+// app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// console.log('Views path:', path.join(__dirname, 'views'));
+
+// If running on Vercel (serverless), export a handler
+if (process.env.VERCEL) {
+  module.exports = async (req, res) => {
+    try {
+      if (mongoose.connection.readyState !== 1) {
+        await mongooseConnection;
+        console.log('✅ MongoDB connected (Vercel)');
+      }
+
+      return app(req, res); // serverless-style handler
+    } catch (err) {
+      console.error('❌ Vercel MongoDB connection error:', err);
+      res.status(500).send('Internal Server Error');
+    }
+  };
+} else {
+  // If running locally, start an Express server
+  mongooseConnection.then(() => {
+    console.log('✅ MongoDB connected (Local)');
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => {
+      console.log(`🚀 Server running at http://localhost:${PORT}`);
+    });
+  }).catch(err => {
+    console.error('❌ Local MongoDB connection error:', err);
+  });
+}
+
+
