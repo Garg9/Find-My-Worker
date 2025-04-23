@@ -3,22 +3,22 @@
 
 // module.exports = serverless(app);
 
-// const ejs = require('ejs');
-// const path = require('path');
+const ejs = require('ejs');
+const path = require('path');
 
-// module.exports = (req, res) => {
-//   // Set the path to your 'views' folder
-//   const viewsDir = path.join(__dirname, '..', 'views');
+module.exports = (req, res) => {
+  // Set the path to your 'views' folder
+  const viewsDir = path.join(__dirname, '..', 'views');
 
-//   // Render the 'index.ejs' file
-//   ejs.renderFile(path.join(viewsDir, 'index.ejs'), {}, (err, html) => {
-//     if (err) {
-//       res.status(500).send('Error rendering the page');
-//     } else {
-//       res.status(200).send(html);
-//     }
-//   });
-// };
+  // Render the 'index.ejs' file
+  ejs.renderFile(path.join(viewsDir, 'index.ejs'), {}, (err, html) => {
+    if (err) {
+      res.status(500).send('Error rendering the page');
+    } else {
+      res.status(200).send(html);
+    }
+  });
+};
 
 // const serverless = require('serverless-http');
 // const express = require('express');
@@ -96,32 +96,7 @@
 //   res.render('index'); // Rendering the index.ejs file
 // });
 
-const serverless = require('serverless-http');
-const express = require('express');
-const path = require('path');
+// 
 
-const app = express();
-
-// Set EJS as the view engine
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, '../views'));
-
-// Define a dynamic route to handle different views
-app.get('/:view', (req, res) => {
-  const { view } = req.params;
-  const validViews = ['index', 'admin/admin_login', 'client/clientlogin', 'worker/workerlogin'];
-  
-  if (validViews.includes(view)) {
-    res.render(view); // Render the view based on the route parameter
-  } else {
-    res.status(404).send('Page Not Found');
-  }
-});
-
-// Export for serverless
-module.exports = serverless(app);
-
-// Export for serverless
-module.exports = serverless(app);
 
 
