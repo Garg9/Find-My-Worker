@@ -254,24 +254,51 @@ const mongooseConnection = mongoose.connect(process.env.MONGODB_CONNECTION_URI, 
 //   console.error('❌ MongoDB Connection Error:', err);
 // });
 
-if (process.env.VERCEL) {
-  module.exports = async (req, res) => {
-    if (mongoose.connection.readyState !== 1) {
-      await mongoose.connect(process.env.MONGODB_CONNECTION_URI);
-    }
-    return app(req, res);
-  };
-} else {
-  mongoose.connect(process.env.MONGODB_CONNECTION_URI)
-    .then(() => {
-      app.listen(process.env.PORT || 3000, () =>
-        console.log(`Server running at http://localhost:${process.env.PORT || 3000}`)
-      );
-    })
-    .catch(err => console.error('MongoDB Connection Error:', err));
-}
+// if (process.env.VERCEL) {
+//   module.exports = async (req, res) => {
+//     if (mongoose.connection.readyState !== 1) {
+//       await mongoose.connect(process.env.MONGODB_CONNECTION_URI);
+//     }
+//     return app(req, res);
+//   };
+// } else {
+//   mongoose.connect(process.env.MONGODB_CONNECTION_URI)
+//     .then(() => {
+//       app.listen(process.env.PORT || 3000, () =>
+//         console.log(`Server running at http://localhost:${process.env.PORT || 3000}`)
+//       );
+//     })
+//     .catch(err => console.error('MongoDB Connection Error:', err));
+// }
 // // Start the server
 // const PORT = process.env.PORT || 3000;
 // app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 // console.log('Views path:', path.join(__dirname, 'views'));
 
+// If running on Vercel (serverless), export a handler
+if (process.env.VERCEL) {
+  module.exports = async (req, res) => {
+    try {
+      if (mongoose.connection.readyState !== 1) {
+        await mongooseConnection;
+        console.log('✅ MongoDB connected (Vercel)');
+      }
+
+      return app(req, res); // serverless-style handler
+    } catch (err) {
+      console.error('❌ Vercel MongoDB connection error:', err);
+      res.status(500).send('Internal Server Error');
+    }
+  };
+} else {
+  // If running locally, start an Express server
+  mongooseConnection.then(() => {
+    console.log('✅ MongoDB connected (Local)');
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => {
+      console.log(`🚀 Server running at http://localhost:${PORT}`);
+    });
+  }).catch(err => {
+    console.error('❌ Local MongoDB connection error:', err);
+  });
+}
