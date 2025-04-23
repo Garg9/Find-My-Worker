@@ -51,33 +51,52 @@
 
 // module.exports = serverless(app);
 
+// const serverless = require('serverless-http');
+// const express = require('express');
+// const path = require('path');
+
+// const app = express();
+
+// // Setup EJS
+// app.set('view engine', 'ejs');
+// app.set('views', path.join(__dirname, '../views'));
+
+// // Routes
+// app.get('/', (req, res) => {
+//   res.render('index');
+// });
+
+// app.get('/admin/login', (req, res) => {
+//   res.render('admin/admin_login');
+// });
+
+// app.get('/client/login', (req, res) => {
+//   res.render('client/clientlogin');
+// });
+
+// app.get('/worker/login', (req, res) => {
+//   res.render('worker/workerlogin');
+// });
+
+// // Export for serverless
+// module.exports = serverless(app);
+
 const serverless = require('serverless-http');
 const express = require('express');
 const path = require('path');
 
 const app = express();
 
-// Setup EJS
+// Set up EJS
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '../views'));
 
-// Routes
+// Simple index route
 app.get('/', (req, res) => {
-  res.render('index');
-});
-
-app.get('/admin/login', (req, res) => {
-  res.render('admin/admin_login');
-});
-
-app.get('/client/login', (req, res) => {
-  res.render('client/clientlogin');
-});
-
-app.get('/worker/login', (req, res) => {
-  res.render('worker/workerlogin');
+  res.render('index'); // Rendering the index.ejs file
 });
 
 // Export for serverless
 module.exports = serverless(app);
+
 
