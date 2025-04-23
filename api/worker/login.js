@@ -2,13 +2,13 @@ const ejs = require('ejs');
 const path = require('path');
 
 module.exports = (req, res) => {
-  const viewsPath = path.join(__dirname, '..', '..', 'views', 'worker');
-  const filePath = path.join(viewsPath, 'workerlogin.ejs');
-
+  const filePath = path.join(__dirname, '..', '..', 'views', 'worker', 'workerlogin.ejs');
+  console.log('Attempting to render:', filePath);
+  
   ejs.renderFile(filePath, {}, (err, html) => {
     if (err) {
-      console.error('❌ Error rendering worker login page:', err);
-      res.status(500).send('Error rendering worker login page');
+      console.error('EJS Error:', err.message, err.stack);
+      res.status(500).send(`Error: ${err.message}`);
     } else {
       res.status(200).send(html);
     }
