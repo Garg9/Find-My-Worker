@@ -2,8 +2,6 @@
   "version": 2,
   "rewrites": [
     { "source": "/", "destination": "/api/index.js" },
-    { "source": "/api/admin/login", "destination": "/views/admin/admin_login.ejs" },
-    { "source": "/api/client/login", "destination": "/views/client/clientlogin.ejs" },
-     { "source": "/api/:path*", "destination": "/api/:path*" }
+    { "source": "/api/:path*", "destination": "/api/:path*" }
   ]
 }
